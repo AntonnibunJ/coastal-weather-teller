@@ -4,14 +4,33 @@
     <title>Coastal Weather Teller</title>
 </head>
 <body>
-    <h1>Coastal Weather Teller - Kanyakumari</h1>
-    <h2>Select Location:</h2>
+    <h1>Coastal Weather Teller - Kanyakumari District</h1>
+
     <ul>
-        <li><a href="/kanyakumari">Kanyakumari Beach</a></li>
-        <li><a href="/muttom">Muttom Beach</a></li>
-        <li><a href="/sothavilai">Sothavilai Beach</a></li>
+        <li><a href="/kanyakumari">Kanyakumari</a></li>
+        <li><a href="/muttom">Muttom</a></li>
+        <li><a href="/sothavilai">Sothavilai</a></li>
         <li><a href="/vivekananda">Vivekananda Rock</a></li>
-        <li><a href="/thengapattinam">Thengapattinam Beach</a></li>
+        <li><a href="/thengapattinam">Thengapattinam</a></li>
     </ul>
+
+    <h2>QR Codes</h2>
+
+    <div>
+        <p>Kanyakumari</p>
+        <img src="{{ url_for('static', filename='kanyakumari_qr.png') }}" width="150">
+
+        <p>Muttom</p>
+        <img src="{{ url_for('static', filename='muttom_qr.png') }}" width="150">
+
+        <p>Sothavilai</p>
+        <img src="{{ url_for('static', filename='sothavilai_qr.png') }}" width="150">
+
+        <p>Vivekananda</p>
+        <img src="{{ url_for('static', filename='vivekananda_qr.png') }}" width="150">
+
+        <p>Thengapattinam</p>
+        <img src="{{ url_for('static', filename='thengapattinam_qr.png') }}" width="150">
+    </div>
 </body>
 </html>
