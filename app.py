@@ -4,7 +4,7 @@ import os
 
 app = Flask(__name__)
 
-API_KEY ="671d22e0e50c2586cfdd2635c481971fY"
+API_KEY = os.environ.get("162b450521c4992217ce2a7156851b04")
 
 locations = {
     "kanyakumari": {
@@ -28,48 +28,49 @@ locations = {
         "api_city": "Nagercoil"
     }
 }
-sample_weather = [
-    {
-        "temperature": "32°C",
-        "humidity": "78%",
-        "wind_speed": "18 km/h",
-        "condition": "Partly Cloudy"
-    },
-    {
-        "temperature": "38°C",
-        "humidity": "45%",
-        "wind_speed": "12 km/h",
-        "condition": "Sunny"
-    },
-    {
-        "temperature": "28°C",
-        "humidity": "92%",
-        "wind_speed": "25 km/h",
-        "condition": "Heavy Rain"
-    }
-]
+
 def get_weather(city, display_name):
-   if not API_KEY:
-    sample = random.choice(sample_weather)
+    if not API_KEY:
+        return {
+            "location": display_name,
+            "temperature": "32°C",
+            "humidity": "78%",
+            "wind_speed": "18 km/h",
+            "condition": "Partly Cloudy"
+        }
 
-    return {
-        "location": display_name,
-        "temperature": sample["temperature"],
-        "humidity": sample["humidity"],
-        "wind_speed": sample["wind_speed"],
-        "condition": sample["condition"]
-    }
+    url = f"https://api.openweathermap.org/data/2.5/weather?q={city},IN&appid={API_KEY}&units=metric"
 
-   except Exception as e:
-    sample = random.choice(sample_weather)
+    try:
+        response = requests.get(url, timeout=10)
+        data = response.json()
 
-    return {
-        "location": display_name,
-        "temperature": sample["temperature"],
-        "humidity": sample["humidity"],
-        "wind_speed": sample["wind_speed"],
-        "condition": sample["condition"]
-    }
+        if response.status_code != 200:
+            return {
+                "location": display_name,
+                "temperature": "38°C",
+                "humidity": "45%",
+                "wind_speed": "12 km/h",
+                "condition": data.get("message", "Weather unavailable")
+            }
+
+        return {
+            "location": display_name,
+            "temperature": data["main"]["temp"],
+            "humidity": data["main"]["humidity"],
+            "wind_speed": data["wind"]["speed"],
+            "condition": data["weather"][0]["description"]
+        }
+
+    except Exception as e:
+        return {
+            "location": display_name,
+            "temperature": "28°C",
+            "humidity": "45%",
+            "wind_speed": "18km/h",
+            "condition": f"Error: {str(e)}"
+        }
+
 @app.route('/')
 def home():
     return render_template('index.html', locations=locations)
