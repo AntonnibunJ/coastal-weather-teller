@@ -33,9 +33,9 @@ def get_weather(city, display_name):
     if not API_KEY:
         return {
             "location": display_name,
-            "temperature": "32°C",
-            "humidity": "78%",
-            "wind_speed": "18 km/h",
+            "temperature": "32",
+            "humidity": "78",
+            "wind_speed": "18",
             "condition": "Partly Cloudy"
         }
 
@@ -48,9 +48,9 @@ def get_weather(city, display_name):
         if response.status_code != 200:
             return {
                 "location": display_name,
-                "temperature": "38°C",
-                "humidity": "45%",
-                "wind_speed": "12 km/h",
+                "temperature": "38",
+                "humidity": "45",
+                "wind_speed": "12",
                 "condition": data.get("message", "Weather unavailable")
             }
 
