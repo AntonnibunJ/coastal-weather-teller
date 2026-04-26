@@ -4,14 +4,20 @@
     <title>{{ weather.location }} Weather Report</title>
 </head>
 <body>
+
     <h1>{{ weather.location }} Daily Weather Report</h1>
 
     <p><strong>Temperature:</strong> {{ weather.temperature }} °C</p>
-    <p><strong>Humidity:</strong> {{ weather.humidity }} %</p>
+    <p><strong>Humidity:</strong> {{ weather.humidity }}%</p>
     <p><strong>Wind Speed:</strong> {{ weather.wind_speed }} m/s</p>
-    <p><strong>Weather Condition:</strong> {{ weather.condition }}</p>
+    <p><strong>Condition:</strong> {{ weather.condition }}</p>
 
-    <br>
-    <a href="/">Back to Home</a>
+    <h2>QR Code for this location:</h2>
+    <img src="{{ url_for('static', filename=place + '_qr.png') }}" width="200">
+
+    <br><br>
+
+    <a href="/">Back to Home Page</a>
+
 </body>
 </html>

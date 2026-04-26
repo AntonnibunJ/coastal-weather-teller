@@ -1,9 +1,8 @@
 import qrcode
+import os
 
-# Your deployed website base URL
-base_url = "https://coastal-weather-teller-felgtxqr3-antonnibunjs-projects.vercel.app"
+base_url = "https://coastal-weather-teller.vercel.app"
 
-# Coastal locations
 locations = [
     "kanyakumari",
     "muttom",
@@ -12,9 +11,11 @@ locations = [
     "thengapattinam"
 ]
 
-# Generate QR codes
+output_folder = "static"
+os.makedirs(output_folder, exist_ok=True)
+
 for place in locations:
     url = f"{base_url}/{place}"
     img = qrcode.make(url)
-    img.save(f"{place}_qr.png")
+    img.save(os.path.join(output_folder, f"{place}_qr.png"))
     print(f"{place}_qr.png generated successfully!")
