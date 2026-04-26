@@ -4,7 +4,7 @@ import requests
 app = Flask(__name__)
 
 # Your Weather API Key
-API_KEY = "your_api_key_here"
+API_KEY = "671d22e0e50c2586cfdd2635c481971f"
 
 # Kanyakumari coastal locations
 locations = {

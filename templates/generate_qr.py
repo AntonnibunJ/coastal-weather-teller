@@ -1,7 +1,7 @@
 import qrcode
 
 # Your deployed website base URL
-base_url = "https://yourwebsite.vercel.app"
+base_url = "https://coastal-weather-teller-felgtxqr3-antonnibunjs-projects.vercel.app"
 
 # Coastal locations
 locations = [
