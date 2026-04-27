@@ -127,27 +127,39 @@
     </div>
 
     <div class="extra-info">
-        <p><strong>Emergency Contact:</strong> {{ details.phone }}</p>
+        <p><strong>Emergency Contact:</strong> {{ details.get('phone', 'Unavailable') }}</p>
 
         <p><strong>Tourist Spots:</strong></p>
         <ul>
-            {% for spot in details.tourist_spots %}
-            <li>{{ spot }}</li>
-            {% endfor %}
+            {% if details.get('tourist_spots') %}
+                {% for spot in details.get('tourist_spots', []) %}
+                <li>{{ spot }}</li>
+                {% endfor %}
+            {% else %}
+                <li>No tourist spots available.</li>
+            {% endif %}
         </ul>
 
         <p><strong>Hotels:</strong></p>
         <ul>
-            {% for hotel in details.hotels %}
-            <li>{{ hotel }}</li>
-            {% endfor %}
+            {% if details.get('hotels') %}
+                {% for hotel in details.get('hotels', []) %}
+                <li>{{ hotel }}</li>
+                {% endfor %}
+            {% else %}
+                <li>No hotels available.</li>
+            {% endif %}
         </ul>
 
         <p><strong>Shops:</strong></p>
         <ul>
-            {% for shop in details.shops %}
-            <li>{{ shop }}</li>
-            {% endfor %}
+            {% if details.get('shops') %}
+                {% for shop in details.get('shops', []) %}
+                <li>{{ shop }}</li>
+                {% endfor %}
+            {% else %}
+                <li>No shops available.</li>
+            {% endif %}
         </ul>
     </div>
 
