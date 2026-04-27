@@ -4,8 +4,7 @@ import os
 
 app = Flask(__name__)
 
-API_KEY = os.environ.get("162b450521c4992217ce2a7156851b04")
-
+API_KEY = os.environ.get("API_KEY")
 locations = {
     "kanyakumari": {
         "display": "Kanyakumari",
