@@ -1,39 +1,179 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coastal Weather Teller</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Trebuchet MS', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(rgba(0, 40, 70, 0.55), rgba(0, 80, 120, 0.65)),
+                        url("{{ url_for('static', filename='background.jpg') }}") no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .wave {
+            position: fixed;
+            width: 200%;
+            height: 200px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 43%;
+            animation: wave 12s infinite linear;
+            bottom: -120px;
+            left: -50%;
+        }
+
+        @keyframes wave {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1300px;
+            margin: auto;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .title-box {
+            background: rgba(0, 0, 0, 0.45);
+            padding: 30px;
+            border-radius: 25px;
+            box-shadow: 0 0 25px rgba(0,255,255,0.3);
+            animation: floatBox 4s ease-in-out infinite;
+        }
+
+        @keyframes floatBox {
+            0%,100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        h1 {
+            font-size: 3.2rem;
+            color: #7df9ff;
+            text-shadow: 2px 2px 10px #000;
+        }
+
+        h2 {
+            margin-top: 15px;
+            color: #ffd700;
+            font-size: 1.8rem;
+        }
+
+        .locations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .card {
+            background: rgba(255,255,255,0.12);
+            border-radius: 25px;
+            padding: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.35);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-12px) scale(1.04);
+            box-shadow: 0 12px 35px rgba(0,255,255,0.45);
+        }
+
+        .card::before {
+            content: '🌊';
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 1.8rem;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%,100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .card a {
+            display: inline-block;
+            color: #7df9ff;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-decoration: none;
+        }
+
+        .card a:hover {
+            color: #ffd700;
+        }
+
+        .card img {
+            border-radius: 15px;
+            border: 3px solid rgba(255,255,255,0.4);
+            width: 150px;
+            height: 150px;
+        }
+
+        footer {
+            margin-top: 40px;
+            font-size: 1rem;
+            color: #dff;
+        }
+    </style>
 </head>
 <body>
-    <h1>Coastal Weather Teller - Kanyakumari District</h1>
 
-    <h2>Select a Location:</h2>
+<div class="wave"></div>
 
-    <ul>
-        <li>
+<div class="container">
+    <div class="title-box">
+        <h1>Coastal Weather Teller</h1>
+        <h2>Kanyakumari District Oceanic Forecast Hub</h2>
+    </div>
+
+    <div class="locations-grid">
+        <div class="card">
             <a href="/kanyakumari">Kanyakumari</a><br>
-            <img src="{{ url_for('static', filename='kanyakumari_qr.png') }}" width="150">
-        </li>
+            <img src="{{ url_for('static', filename='kanyakumari_qr.png') }}">
+        </div>
 
-        <li>
+        <div class="card">
             <a href="/muttom">Muttom</a><br>
-            <img src="{{ url_for('static', filename='muttom_qr.png') }}" width="150">
-        </li>
+            <img src="{{ url_for('static', filename='muttom_qr.png') }}">
+        </div>
 
-        <li>
+        <div class="card">
             <a href="/sothavilai">Sothavilai</a><br>
-            <img src="{{ url_for('static', filename='sothavilai_qr.png') }}" width="150">
-        </li>
+            <img src="{{ url_for('static', filename='sothavilai_qr.png') }}">
+        </div>
 
-        <li>
+        <div class="card">
             <a href="/vivekananda">Vivekananda Rock</a><br>
-            <img src="{{ url_for('static', filename='vivekananda_qr.png') }}" width="150">
-        </li>
+            <img src="{{ url_for('static', filename='vivekananda_qr.png') }}">
+        </div>
 
-        <li>
+        <div class="card">
             <a href="/thengapattinam">Thengapattinam</a><br>
-            <img src="{{ url_for('static', filename='thengapattinam_qr.png') }}" width="150">
-        </li>
-    </ul>
+            <img src="{{ url_for('static', filename='thengapattinam_qr.png') }}">
+        </div>
+    </div>
+
+    <footer>
+        Real-time coastal conditions • QR-enabled tourism weather access
+    </footer>
+</div>
 
 </body>
 </html>
