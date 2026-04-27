@@ -29,7 +29,7 @@
             padding: 40px;
             border-radius: 30px;
             width: 95%;
-            max-width: 700px;
+            max-width: 850px;
             text-align: center;
             backdrop-filter: blur(12px);
             box-shadow: 0 0 35px rgba(0,255,255,0.35);
@@ -85,6 +85,31 @@
             0%,100% { transform: translateY(0); }
             50% { transform: translateY(-8px); }
         }
+
+        .extra-info {
+            margin-top: 30px;
+            text-align: left;
+            background: rgba(255,255,255,0.08);
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(255,255,255,0.08);
+        }
+
+        .extra-info p {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .extra-info ul {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        .extra-info li {
+            margin: 6px 0;
+            font-size: 1.05rem;
+            color: #e6f7ff;
+        }
     </style>
 </head>
 <body>
@@ -99,6 +124,31 @@
         <p><strong>Humidity:</strong> {{ weather.humidity }}%</p>
         <p><strong>Wind Speed:</strong> {{ weather.wind_speed }} m/s</p>
         <p><strong>Condition:</strong> {{ weather.condition }}</p>
+    </div>
+
+    <div class="extra-info">
+        <p><strong>Emergency Contact:</strong> {{ details.phone }}</p>
+
+        <p><strong>Tourist Spots:</strong></p>
+        <ul>
+            {% for spot in details.tourist_spots %}
+            <li>{{ spot }}</li>
+            {% endfor %}
+        </ul>
+
+        <p><strong>Hotels:</strong></p>
+        <ul>
+            {% for hotel in details.hotels %}
+            <li>{{ hotel }}</li>
+            {% endfor %}
+        </ul>
+
+        <p><strong>Shops:</strong></p>
+        <ul>
+            {% for shop in details.shops %}
+            <li>{{ shop }}</li>
+            {% endfor %}
+        </ul>
     </div>
 
     <a href="/" class="back-btn">Back to Home</a>
